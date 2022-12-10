@@ -6,11 +6,6 @@ function Home() {
   
   const showSimulateResults = event => {
     setIsShown(current => true);
-    let result = getSimulate();
-    result.then((data) => {
-	// show data on the page;
-    	console.log(data);
-    });
   }
  
   return (
