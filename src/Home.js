@@ -1,7 +1,7 @@
 import {useState} from "react";
-import ShowResult from "./ShowResult.js";
 import React, {createRef} from "react";
 import FileUpload from "./FileUpload.js";
+import ResultsPoints from "./components/ResultsPoints.js";
 
 function Home() {
   const [isShown, setIsShown] = useState(false);
@@ -18,7 +18,7 @@ function Home() {
       <FileUpload ref={fileUploadRef}/>
       <button onClick = {showSimulateResults}>Simular resultados</button>
       {isShown && (
-	      <ShowResult/>
+	      <ResultsPoints/>
       )}
     </div>
   );
