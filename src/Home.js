@@ -1,5 +1,6 @@
-import {postSimulate, getSimulate} from "./API.js";
-import {useState, useEffect} from "react";
+import {postSimulate} from "./API.js";
+import {useState} from "react";
+import ResultsPoints from "./components/ResultsPoints.js";
 
 function Home() {
   const [isShown, setIsShown] = useState(false);
@@ -14,7 +15,7 @@ function Home() {
       <button onClick = {activateSimulation}>Simular Resultados</button>
       <button onClick = {showSimulateResults}>Mostrar resultados</button>
       {isShown && (
-	      <ShowResult/>
+	      <ResultsPoints/>
       )}
     </div>
   );
@@ -24,32 +25,5 @@ function activateSimulation() {
   let result = postSimulate();
   console.log(result);
 }
-
-function ShowResult() {
-  const [apiResponse, setApiResponse] = useState("");
-
-  useEffect(() => {
-      getSimulate().then(
-          result => setApiResponse(result));
-  },[]);
-
-  return(
-      <div>
-          <h1>Resultados</h1>
-          <div>
-	  {
-	    Object.keys(apiResponse)
-		.map( (obj, i) => (
-			<div>
-			  <h3 key="{i}">{obj}</h3>
-		  	  <p>{JSON.stringify(apiResponse[obj])}</p>
-			</div>
-		  )	
-		)
-	 }
-         </div>
-      </div>
-  );
-};
 
 export default Home;
