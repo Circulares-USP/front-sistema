@@ -29,12 +29,12 @@ function ResultsPoints() {
           <h1>Resultados</h1>
           <div>
 		<div>
-		  <h3>Média por ponto</h3>
+		  <h3 className="mt-4">Média por ponto</h3>
 	  	    {
 		      Object.keys(apiResponse)
 			  .map( (obj, i) => (
 				<div key={i.toString()}>
-				  <h4>{translateActionPeriod(obj)}</h4>
+				  <h4 className="mt-4">{translateActionPeriod(obj)}</h4>
 				  <table>
 				  <thead>
 				    <tr>
