@@ -114,16 +114,15 @@ class FileUpload extends React.Component{
 
 	formatDepartureJson = (rawDeparture) => {
 		var parsedDeparture = {
-			8012: [],
-			8022: [],
-			8032: []
+			"saidas_por_hora": {}
 		}
 		for (let i = 0; i < 24; i++) {
+			let hour = i.toString();
+			parsedDeparture["saidas_por_hora"][hour] = {};
 			for (let j = 8012; j < 8042; j += 10) {
-				parsedDeparture[j].push(rawDeparture[i][j])
+				parsedDeparture["saidas_por_hora"][hour][j.toString()] = rawDeparture[i][j]
 			}
 		}
-		console.log(parsedDeparture);
 		this.setState({departureJson: parsedDeparture});
 	}
 
