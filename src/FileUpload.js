@@ -26,54 +26,76 @@ class FileUpload extends React.Component{
 
 	formatDemandJson = (demandaIdaButanta, demandaIdaP3, demandaVoltaButanta, demandaVoltaP3) => {
 		var parsedDemand = {
-			"ida_manha": {
-				"de_p3": {
-					"seg": {},
-					"ter": {},
-					"qua": {},
-					"qui": {},
-					"sex": {},
+			"seg": {
+				"ida_manha": {
+					"de_p3": {},
+					"de_butanta": {}
 				},
-				"de_butanta": {
-					"seg": {},
-					"ter": {},
-					"qua": {},
-					"qui": {},
-					"sex": {},
+				"ida_tarde": {
+					"de_p3": {},
+					"de_butanta": {}
+				},
+				"volta_tarde": {
+					"de_p3": {},
+					"de_butanta": {}
 				}
 			},
-			"ida_tarde": {
-				"de_p3": {
-					"seg": {},
-					"ter": {},
-					"qua": {},
-					"qui": {},
-					"sex": {},
+			"ter": {
+				"ida_manha": {
+					"de_p3": {},
+					"de_butanta": {}
 				},
-				"de_butanta": {
-					"seg": {},
-					"ter": {},
-					"qua": {},
-					"qui": {},
-					"sex": {},
+				"ida_tarde": {
+					"de_p3": {},
+					"de_butanta": {}
+				},
+				"volta_tarde": {
+					"de_p3": {},
+					"de_butanta": {}
 				}
 			},
-			"volta_tarde": {
-				"de_p3": {
-					"seg": {},
-					"ter": {},
-					"qua": {},
-					"qui": {},
-					"sex": {},
+			"qua": {
+				"ida_manha": {
+					"de_p3": {},
+					"de_butanta": {}
 				},
-				"de_butanta": {
-					"seg": {},
-					"ter": {},
-					"qua": {},
-					"qui": {},
-					"sex": {},
+				"ida_tarde": {
+					"de_p3": {},
+					"de_butanta": {}
+				},
+				"volta_tarde": {
+					"de_p3": {},
+					"de_butanta": {}
 				}
-			}
+			},
+			"qui": {
+				"ida_manha": {
+					"de_p3": {},
+					"de_butanta": {}
+				},
+				"ida_tarde": {
+					"de_p3": {},
+					"de_butanta": {}
+				},
+				"volta_tarde": {
+					"de_p3": {},
+					"de_butanta": {}
+				}
+			},
+			"sex": {
+				"ida_manha": {
+					"de_p3": {},
+					"de_butanta": {}
+				},
+				"ida_tarde": {
+					"de_p3": {},
+					"de_butanta": {}
+				},
+				"volta_tarde": {
+					"de_p3": {},
+					"de_butanta": {}
+				}
+			},
 		}
 		for (let i = 0; i < 10; i++) {
 			let hourButanta = demandaIdaButanta[i].Hora === "08:00" ? "ida_manha" : "ida_tarde";
@@ -81,7 +103,7 @@ class FileUpload extends React.Component{
 
 			for (const [stop, value] of Object.entries(demandaIdaButanta[i])) {
 				if (stop === "Hora" || stop === "Dia") continue;
-				parsedDemand[hourButanta]["de_butanta"][dayButanta][stop] = value;
+				parsedDemand[dayButanta][hourButanta]["de_butanta"][stop] = value;
 			}
 
 			let hourP3 = demandaIdaP3[i].Hora === "08:00" ? "ida_manha" : "ida_tarde";
@@ -89,7 +111,7 @@ class FileUpload extends React.Component{
 
 			for (const [stop, value] of Object.entries(demandaIdaP3[i])) {
 				if (stop === "Hora" || stop === "Dia") continue;
-				parsedDemand[hourP3]["de_p3"][dayP3][stop] = value;
+				parsedDemand[dayP3][hourP3]["de_p3"][stop] = value;
 			}
 		}
 
@@ -98,17 +120,16 @@ class FileUpload extends React.Component{
 
 			for (const [stop, value] of Object.entries(demandaVoltaButanta[i])) {
 				if (stop === "Hora" || stop === "Dia") continue;
-				parsedDemand["volta_tarde"]["de_butanta"][dayButanta][stop] = value;
+				parsedDemand[dayButanta]["volta_tarde"]["de_butanta"][stop] = value;
 			}
 
 			let dayP3 = convertDayNames(demandaVoltaP3[i].Dia);
 
 			for (const [stop, value] of Object.entries(demandaVoltaP3[i])) {
 				if (stop === "Hora" || stop === "Dia") continue;
-				parsedDemand["volta_tarde"]["de_p3"][dayP3][stop] = value;
+				parsedDemand[dayP3]["volta_tarde"]["de_p3"][stop] = value;
 			}
 		}
-		
 		this.setState({demandJson: parsedDemand});
 	}
 
