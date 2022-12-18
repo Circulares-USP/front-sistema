@@ -151,10 +151,18 @@ class FileUpload extends React.Component{
 	render() {
 		return(
 			<div>
-				<input id="demand" type="file" name="file" onChange={this.changeDemandFile} />
-				<br/>
-				<input id="departure" type="file" name="file" onChange={this.changeDepartureFile} />
-				<br/>
+				<table>
+					<tbody>
+						<tr>
+							<td><label htmlFor="file">Demanda de Alunos:</label></td>
+							<td><input id="demand" type="file" name="file" onChange={this.changeDemandFile} /></td>
+						</tr>
+						<tr>
+							<td><label htmlFor="file">Saídas de Ônibus:</label></td>
+							<td><input id="departure" type="file" name="file" onChange={this.changeDepartureFile} /></td>
+						</tr>
+					</tbody>
+				</table>
 				<button type="submit" onClick={() => {this.props.getJsons(this.state.demandJson, this.state.departureJson)}}>
 					Confirmar arquivos
 				</button>
