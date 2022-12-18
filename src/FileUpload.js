@@ -11,7 +11,8 @@ class FileUpload extends React.Component{
 			selectedDepartureFile: null,
 			isDepartureFileSelected: false,
 			demandJson: {},
-			departureJson: {}}
+			departureJson: {}
+			}
 	}
 
 	changeDemandFile = (event) => {
@@ -153,6 +154,10 @@ class FileUpload extends React.Component{
 				<input id="demand" type="file" name="file" onChange={this.changeDemandFile} />
 				<br/>
 				<input id="departure" type="file" name="file" onChange={this.changeDepartureFile} />
+				<br/>
+				<button type="submit" onClick={() => {this.props.getJsons(this.state.demandJson, this.state.departureJson)}}>
+					Confirmar arquivos
+				</button>
 			</div>
 		)
 	}
