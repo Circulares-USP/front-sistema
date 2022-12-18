@@ -11,8 +11,14 @@ class FileUpload extends React.Component{
 			selectedDepartureFile: null,
 			isDepartureFileSelected: false,
 			demandJson: {},
-			departureJson: {}
+			departureJson: {},
+			isParsing: true,
 			}
+	}
+
+	componentDidUpdate() {
+		if (this.state.isParsing && this.state.demandJson !== {} && this.state.departureJson !== {})
+			this.setState({isParsing: false});
 	}
 
 	changeDemandFile = (event) => {
@@ -163,7 +169,7 @@ class FileUpload extends React.Component{
 						</tr>
 					</tbody>
 				</table>
-				<button type="submit" onClick={() => {this.props.getJsons(this.state.demandJson, this.state.departureJson)}}>
+				<button disabled={this.state.isParsing} onClick={() => {this.props.getJsons(this.state.demandJson, this.state.departureJson)}}>
 					Confirmar arquivos
 				</button>
 			</div>
