@@ -24,7 +24,7 @@ function ResultsPoints({test_mode=false}) {
       getSimulate().then(
           result => setApiResponse(result['media-por-ponto']));
     }
-  },[]);
+  },[test_mode]);
 
   return(
       <div>
