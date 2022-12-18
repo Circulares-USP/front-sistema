@@ -13,6 +13,8 @@ class Home extends React.Component{
         8022: [],
         8032: []
       },
+      steps: ["sendFiles", "routeSelect8012", "routeSelect8022", "routeSelect8032", "ready", "done"],
+      stepIndex: 0,
       currentStep: "sendFiles",
       demandJson: {},
       departureJson: {},
@@ -26,28 +28,29 @@ class Home extends React.Component{
   fileUploadRef = createRef();
   
   showSimulateResults = () => {
-    this.setState({currentStep: "done"});
+    this.setNextStep();
   }
 
   handleSubmit = (line, stops) => {
     var newRoutes = {...this.state.routes};
     newRoutes[line] = stops;
     this.setState({routes: newRoutes});
-    this.updateSelectionRoute();
+    this.setNextStep();
   }
 
-  updateSelectionRoute = () => {
-    if (this.state.currentStep === "routeSelect8012") 
-      this.setState({currentStep: "routeSelect8022"});
-    if (this.state.currentStep === "routeSelect8022") 
-      this.setState({currentStep: "routeSelect8032"});
-    if (this.state.currentStep === "routeSelect8032") 
-      this.setState({currentStep: "ready"});
+  setNextStep = () => {
+    this.setState({stepIndex: this.state.stepIndex + 1,
+      currentStep: this.state.steps[this.state.stepIndex + 1]});
+  }
+
+  setPreviousStep = () => {
+    this.setState({stepIndex: this.state.stepIndex - 1,
+      currentStep: this.state.steps[this.state.stepIndex -1]});
   }
 
   getJsons = (demandJson, departureJson) => {
     this.setState({demandJson: demandJson, departureJson: departureJson});
-    this.setState({currentStep: "routeSelect8012"});
+    this.setNextStep();
   }
 
   render() {
@@ -67,6 +70,7 @@ class Home extends React.Component{
         {this.state.currentStep === "done" && (
           <ResultsPoints/>
         )}
+        {this.state.currentStep !== "sendFiles" && <button onClick={this.setPreviousStep}>Voltar</button>}
       </div>
     );
   }
