@@ -16,12 +16,14 @@ function translateActionPeriod(key) {
   }
 };
 
-function ResultsPoints() {
+function ResultsPoints({test_mode=false}) {
   const [apiResponse, setApiResponse] = useState("");
 
   useEffect(() => {
+    if (test_mode == false) {
       getSimulate().then(
           result => setApiResponse(result['media-por-ponto']));
+    }
   },[]);
 
   return(

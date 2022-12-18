@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import ResultsPoints from './ResultsPoints';
 
 beforeEach(() => {
-  const resultsPoints = render(<ResultsPoints />);
+  const resultsPoints = render(<ResultsPoints test_mode={true} />);
 });
 
 it('renderiza a seção de resultados corretamente', () => {
