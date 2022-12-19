@@ -23,12 +23,12 @@ class FileUpload extends React.Component{
 
 	changeDemandFile = (event) => {
 		this.setState({selectedDemandFile: event.target.files[0], isDemandFileSelected: true});
-		xlsxToJson(event.target.files[0], this.formatDemandJson);
+		demandXlsxToJson(event.target.files[0], this.formatDemandJson);
 	};
 
 	changeDepartureFile = (event) => {
 		this.setState({selectedDepartureFile: event.target.files[0], isDepartureFileSelected: true});
-		xlsxToJson(event.target.files[0], this.formatDepartureJson);
+		departureXlsxToJson(event.target.files[0], this.formatDepartureJson);
 	};
 
 	formatDemandJson = (demandaIdaButanta, demandaIdaP3, demandaVoltaButanta, demandaVoltaP3) => {
@@ -179,7 +179,7 @@ class FileUpload extends React.Component{
 	}
 }
 
-function xlsxToJson(file, callback) {
+function demandXlsxToJson(file, callback) {
 	const reader = new FileReader();
 	reader.onload = (evt) => { 
 		const bstr = evt.target.result;
@@ -201,7 +201,23 @@ function xlsxToJson(file, callback) {
 		const sheetVoltaP3 = wb.Sheets[wsnameVoltaP3];
 		const dataVoltaP3 = XLSX.utils.sheet_to_json(sheetVoltaP3);
 
+		console.log(dataIdaButanta, dataIdaP3, dataVoltaButanta, dataVoltaP3);
 		callback(dataIdaButanta, dataIdaP3, dataVoltaButanta, dataVoltaP3);
+	};
+	reader.readAsBinaryString(file);
+}
+
+function departureXlsxToJson(file, callback) {
+	const reader = new FileReader();
+	reader.onload = (evt) => { 
+		const bstr = evt.target.result;
+		const wb = XLSX.read(bstr, {type:'binary'});
+
+		const wsname = wb.SheetNames[0];
+		const sheet = wb.Sheets[wsname];
+		const data = XLSX.utils.sheet_to_json(sheet);
+
+		callback(data);
 	};
 	reader.readAsBinaryString(file);
 }
