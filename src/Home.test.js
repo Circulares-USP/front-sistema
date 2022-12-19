@@ -6,7 +6,7 @@ beforeEach(() => {
 });
 
 it('renderiza o título principal da aplicação', () => {
-  const mainTitle = screen.getByText(/Simulador de Demanda/i);
+  const mainTitle = screen.getByText(/Simulador de Atendimento de Demanda/i);
   expect(mainTitle).toBeInTheDocument();
 });
 

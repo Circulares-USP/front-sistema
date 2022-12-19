@@ -70,7 +70,8 @@ class Home extends React.Component{
   render() {
     return (
       <div className="container overflow-hidden text-center">
-        <h1 className="mt-5">Simulador de Atendimento dos Circulares</h1>
+        <h1 className="mt-5">Simulador de Atendimento de Demanda</h1>
+        <h4> Projeto dos Circulares </h4>
 	<div className="mt-5 d-flex flex-column align-items-center">
 		{this.state.currentStep === "sendFiles" &&
 		  <FileUpload getJsons={this.getJsons} ref={this.fileUploadRef}/>}
