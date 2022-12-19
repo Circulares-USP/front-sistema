@@ -72,7 +72,7 @@ class Home extends React.Component{
       <div className="container overflow-hidden text-center">
         <h1 className="mt-5">Simulador de Demanda</h1>
 	<h4>Projeto dos Circulares</h4>
-	<div className="mt-5 d-flex flew-row justify-content-center">
+	<div className="mt-5 d-flex flex-column align-items-center">
 		{this.state.currentStep === "sendFiles" &&
 		  <FileUpload getJsons={this.getJsons} ref={this.fileUploadRef}/>}
 		{this.state.currentStep === "routeSelect8012Butantã" &&
@@ -92,7 +92,7 @@ class Home extends React.Component{
 		    <ResultsPoints demand={this.state.demandJson} departure={this.state.departureJson} routes={this.state.routes}/>
 		  </div>
 		)}
-		{this.state.currentStep !== "sendFiles" && <button onClick={this.setPreviousStep}>Voltar</button>}
+		{this.state.currentStep !== "sendFiles" && <button className="btn btn-secondary btn-md m-2" onClick={this.setPreviousStep}>Voltar</button>}
 	</div>
       </div>
     );

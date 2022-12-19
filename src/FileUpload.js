@@ -171,7 +171,7 @@ class FileUpload extends React.Component{
 						</tr>
 					</tbody>
 				</table>
-				<button disabled={this.state.isParsing} onClick={() => {this.props.getJsons(this.state.demandJson, this.state.departureJson)}}>
+				<button disabled={this.state.isParsing} className="btn btn-primary btn-md m-2" onClick={() => {this.props.getJsons(this.state.demandJson, this.state.departureJson)}}>
 					Confirmar arquivos
 				</button>
 			</div>
