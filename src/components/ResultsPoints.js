@@ -21,22 +21,22 @@ function ResultsPoints({test_mode=false, demand={}, departure={}, routes={}}) {
 
   useEffect(() => {
     if (test_mode === false) {
-      postSimulate().then(
+      postSimulate({...demand, ...departure, ...routes}).then(
           result => setApiResponse(result['media-por-ponto']));
     }
-  },[test_mode]);
+  },[test_mode, demand, departure, routes]);
 
   return(
       <div>
           <h1>Resultados</h1>
           <div>
 		<div>
-		  <h3>Média por ponto</h3>
+		  <h3 className="mt-4">Média por ponto</h3>
 	  	    {
 		      Object.keys(apiResponse)
 			  .map( (obj, i) => (
 				<div key={i.toString()}>
-				  <h4>{translateActionPeriod(obj)}</h4>
+				  <h4 className="mt-4">{translateActionPeriod(obj)}</h4>
 				  <table>
 				  <thead>
 				    <tr>

@@ -69,26 +69,31 @@ class Home extends React.Component{
 
   render() {
     return (
-      <div>
-        <h1>CIRCULARES - SIMULADOR DE DEMANDA</h1>
-        {this.state.currentStep === "sendFiles" &&
-          <FileUpload getJsons={this.getJsons} ref={this.fileUploadRef}/>}
-        {this.state.currentStep === "routeSelect8012Butantã" &&
-          <RouteSelect line={8012} rota={"Sentido Butantã -> P3"} sentido="ida" handleSubmit={this.handleSubmit}/>}
-        {this.state.currentStep === "routeSelect8012P3" &&
-          <RouteSelect line={8012} rota={"Sentido P3 -> Butantã"} sentido="volta" handleSubmit={this.handleSubmit}/>}
-        {this.state.currentStep === "routeSelect8022Butantã" &&
-          <RouteSelect line={8022} rota={"Sentido Butantã -> P3"} sentido="ida" handleSubmit={this.handleSubmit}/>}
-        {this.state.currentStep === "routeSelect8022P3" &&
-          <RouteSelect line={8022} rota={"Sentido P3 -> Butantã"} sentido="volta" handleSubmit={this.handleSubmit}/>}
-        {this.state.currentStep === "routeSelect8032" &&
-          <RouteSelect line={8032} rota={"Circular"} sentido="ida" handleSubmit={this.handleSubmit}/>}
-        {this.state.currentStep === "ready" &&
-          <button onClick = {this.showSimulateResults}>Simular resultados</button>}
-        {this.state.currentStep === "done" && (
-          <ResultsPoints demand={this.state.demandJson} departure={this.state.departureJson} routes={this.state.routes}/>
-        )}
-        {this.state.currentStep !== "sendFiles" && <button onClick={this.setPreviousStep}>Voltar</button>}
+      <div className="container overflow-hidden text-center">
+        <h1 className="mt-5">Simulador de Demanda</h1>
+	<h4>Projeto dos Circulares</h4>
+	<div className="mt-5 d-flex flex-column align-items-center">
+		{this.state.currentStep === "sendFiles" &&
+		  <FileUpload getJsons={this.getJsons} ref={this.fileUploadRef}/>}
+		{this.state.currentStep === "routeSelect8012Butantã" &&
+		  <RouteSelect line={8012} rota={"Sentido Butantã -> P3"} sentido="ida" handleSubmit={this.handleSubmit}/>}
+		{this.state.currentStep === "routeSelect8012P3" &&
+		  <RouteSelect line={8012} rota={"Sentido P3 -> Butantã"} sentido="volta" handleSubmit={this.handleSubmit}/>}
+		{this.state.currentStep === "routeSelect8022Butantã" &&
+		  <RouteSelect line={8022} rota={"Sentido Butantã -> P3"} sentido="ida" handleSubmit={this.handleSubmit}/>}
+		{this.state.currentStep === "routeSelect8022P3" &&
+		  <RouteSelect line={8022} rota={"Sentido P3 -> Butantã"} sentido="volta" handleSubmit={this.handleSubmit}/>}
+		{this.state.currentStep === "routeSelect8032" &&
+		  <RouteSelect line={8032} rota={"Circular"} sentido="ida" handleSubmit={this.handleSubmit}/>}
+		{this.state.currentStep === "ready" &&
+		  <button className="btn btn-primary btn-md m-2" onClick = {this.showSimulateResults}>Simular resultados</button>}
+		{this.state.currentStep === "done" && (
+		  <div className="d-flex justify-content-center mt-5">
+		    <ResultsPoints demand={this.state.demandJson} departure={this.state.departureJson} routes={this.state.routes}/>
+		  </div>
+		)}
+		{this.state.currentStep !== "sendFiles" && <button className="btn btn-secondary btn-md m-2" onClick={this.setPreviousStep}>Voltar</button>}
+	</div>
       </div>
     );
   }

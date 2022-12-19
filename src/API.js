@@ -15,12 +15,12 @@ const postApi = (base, params = {}) => {
     if (res.status !== 200) {
       return null;
     }
-    return res.data.result;
+    return res.data;
   });
 };
 
 const postSimulate = (params) =>
-  postApi("", params).then((data) => data);
+  postApi("/", params).then((data) => data);
 
 // const getSimulate = () =>
 // 	fetchApi("").then((data) => data);
