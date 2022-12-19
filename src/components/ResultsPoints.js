@@ -24,7 +24,7 @@ function ResultsPoints({test_mode=false, demand={}, departure={}, routes={}}) {
       postSimulate({...demand, ...departure, ...routes}).then(
           result => setApiResponse(result['media-por-ponto']));
     }
-  },[test_mode]);
+  },[test_mode, demand, departure, routes]);
 
   return(
       <div>
