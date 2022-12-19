@@ -21,7 +21,7 @@ function ResultsPoints({test_mode=false, demand={}, departure={}, routes={}}) {
 
   useEffect(() => {
     if (test_mode === false) {
-      postSimulate().then(
+      postSimulate({...demand, ...departure, ...routes}).then(
           result => setApiResponse(result['media-por-ponto']));
     }
   },[test_mode]);
