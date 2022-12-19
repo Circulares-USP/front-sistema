@@ -9,11 +9,24 @@ class Home extends React.Component{
     this.state = {
       isShown: false,
       routes: {
-        8012: [],
-        8022: [],
-        8032: []
+        "rotas": {
+          8012: {
+            "ida": [],
+            "volta": [],
+          },
+          8022: {
+            "ida": [],
+            "volta": [],
+          },
+          8032: {
+            "ida": []
+          }
+        }
       },
-      steps: ["sendFiles", "routeSelect8012", "routeSelect8022", "routeSelect8032", "ready", "done"],
+      steps: ["sendFiles", "routeSelect8012Butantã", "routeSelect8012P3",
+      "routeSelect8022Butantã", "routeSelect8022P3",
+      "routeSelect8032",
+      "ready", "done"],
       stepIndex: 0,
       currentStep: "sendFiles",
       demandJson: {},
@@ -28,12 +41,13 @@ class Home extends React.Component{
   fileUploadRef = createRef();
   
   showSimulateResults = () => {
+    console.log({...this.state.demandJson, ...this.state.departureJson, ...this.state.routes})
     this.setNextStep();
   }
 
-  handleSubmit = (line, stops) => {
+  handleSubmit = (line, sentido, stops) => {
     var newRoutes = {...this.state.routes};
-    newRoutes[line] = stops;
+    newRoutes["rotas"][line][sentido] = stops;
     this.setState({routes: newRoutes});
     this.setNextStep();
   }
@@ -59,16 +73,20 @@ class Home extends React.Component{
         <h1>CIRCULARES - SIMULADOR DE DEMANDA</h1>
         {this.state.currentStep === "sendFiles" &&
           <FileUpload getJsons={this.getJsons} ref={this.fileUploadRef}/>}
-        {this.state.currentStep === "routeSelect8012" &&
-          <RouteSelect line={8012} handleSubmit={this.handleSubmit}/>}
-        {this.state.currentStep === "routeSelect8022" &&
-          <RouteSelect line={8022} handleSubmit={this.handleSubmit}/>}
+        {this.state.currentStep === "routeSelect8012Butantã" &&
+          <RouteSelect line={8012} rota={"Sentido Butantã -> P3"} sentido="ida" handleSubmit={this.handleSubmit}/>}
+        {this.state.currentStep === "routeSelect8012P3" &&
+          <RouteSelect line={8012} rota={"Sentido P3 -> Butantã"} sentido="volta" handleSubmit={this.handleSubmit}/>}
+        {this.state.currentStep === "routeSelect8022Butantã" &&
+          <RouteSelect line={8022} rota={"Sentido Butantã -> P3"} sentido="ida" handleSubmit={this.handleSubmit}/>}
+        {this.state.currentStep === "routeSelect8022P3" &&
+          <RouteSelect line={8022} rota={"Sentido P3 -> Butantã"} sentido="volta" handleSubmit={this.handleSubmit}/>}
         {this.state.currentStep === "routeSelect8032" &&
-          <RouteSelect line={8032} handleSubmit={this.handleSubmit}/>}
+          <RouteSelect line={8032} rota={"Circular"} sentido="ida" handleSubmit={this.handleSubmit}/>}
         {this.state.currentStep === "ready" &&
           <button onClick = {this.showSimulateResults}>Simular resultados</button>}
         {this.state.currentStep === "done" && (
-          <ResultsPoints/>
+          <ResultsPoints demand={this.state.demandJson} departure={this.state.departureJson} routes={this.state.routes}/>
         )}
         {this.state.currentStep !== "sendFiles" && <button onClick={this.setPreviousStep}>Voltar</button>}
       </div>

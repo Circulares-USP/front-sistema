@@ -24,7 +24,7 @@ class RouteSelect extends React.Component{
   render() {
     return (
       <div>
-        <h3> Selecione a rota da linha {this.props.line} </h3>
+        <h3> Selecione a rota da linha {this.props.line} ({this.props.rota})</h3>
         <Form>
           {BusStops.map((stop) => (
             <div key={`inline-${stop}`} className="mb-3">
@@ -33,7 +33,7 @@ class RouteSelect extends React.Component{
               onChange = {(e) => {this.handleStopChange(e.target.checked, stop)}}/>
             </div>
           ))}
-          <Button onClick={() => {this.props.handleSubmit(this.props.line, this.state.stops)}}>
+          <Button onClick={() => {this.props.handleSubmit(this.props.line, this.props.sentido, this.state.stops)}}>
             Confirmar
           </Button>
         </Form>

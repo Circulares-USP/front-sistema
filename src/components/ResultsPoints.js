@@ -1,4 +1,4 @@
-import {getSimulate} from "../API.js";
+import {postSimulate} from "../API.js";
 import {useState, useEffect} from "react";
 
 function translateActionPeriod(key) {
@@ -16,12 +16,12 @@ function translateActionPeriod(key) {
   }
 };
 
-function ResultsPoints({test_mode=false}) {
+function ResultsPoints({test_mode=false, demand={}, departure={}, routes={}}) {
   const [apiResponse, setApiResponse] = useState("");
 
   useEffect(() => {
     if (test_mode === false) {
-      getSimulate().then(
+      postSimulate().then(
           result => setApiResponse(result['media-por-ponto']));
     }
   },[test_mode]);
