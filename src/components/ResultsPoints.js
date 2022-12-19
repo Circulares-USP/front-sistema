@@ -41,7 +41,7 @@ function ResultsPoints({test_mode=false, demand={}, departure={}, routes={}}) {
 				  <thead>
 				    <tr>
 				  	<th>Ponto de ônibus</th>
-				  	<th>Porcentagem não entregue</th>
+				  	<th>Porcentagem entregue</th>
 				    </tr>
 				  </thead>
 				  <tbody>
