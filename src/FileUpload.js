@@ -1,5 +1,6 @@
 import React from 'react';
 import * as XLSX from 'xlsx';
+import Form from 'react-bootstrap/Form';
 
 class FileUpload extends React.Component{
 
@@ -159,18 +160,14 @@ class FileUpload extends React.Component{
 	render() {
 		return(
 			<div>
-				<table>
-					<tbody>
-						<tr>
-							<td><label htmlFor="file">Demanda de Alunos:</label></td>
-							<td><input id="demand" type="file" name="file" onChange={this.changeDemandFile} /></td>
-						</tr>
-						<tr>
-							<td><label htmlFor="file">Saídas de Ônibus:</label></td>
-							<td><input id="departure" type="file" name="file" onChange={this.changeDepartureFile} /></td>
-						</tr>
-					</tbody>
-				</table>
+				<Form.Group controlId="formFile" className="mb-3">
+					<Form.Label>Demanda de Alunos</Form.Label>
+					<Form.Control type="file" onChange={this.changeDemandFile} />
+				</Form.Group>
+				<Form.Group controlId="formFile" className="mb-3">
+					<Form.Label>Saídas de Ônibus</Form.Label>
+					<Form.Control type="file" onChange={this.changeDepartureFile} />
+				</Form.Group>
 				<button disabled={this.state.isParsing} className="btn btn-primary btn-md m-2" onClick={() => {this.props.getJsons(this.state.demandJson, this.state.departureJson)}}>
 					Confirmar arquivos
 				</button>
