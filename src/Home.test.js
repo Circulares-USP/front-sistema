@@ -11,14 +11,16 @@ it('renderiza o título principal da aplicação', () => {
 });
 
 it('renderiza o envio de arquivos como tela inicial', () => {
-  const departuresLabel = screen.getByText(/Confirmar arquivos/i, { selector: 'button' });
-  expect(departuresLabel).toBeInTheDocument();
+  const confirmFiles = screen.getByText(/Confirmar arquivos/i, { selector: 'button' });
+  expect(confirmFiles).toBeInTheDocument();
 });
 
-it('transiciona para a tela de seleção de rotas', () => {
-  const departuresLabel = screen.getByText(/Confirmar arquivos/i, { selector: 'button' });
-  expect(departuresLabel).toBeInTheDocument();
-  fireEvent.click(departuresLabel);
-  const routesLabel = screen.getByText(/Selecione a rota da linha/i);
-  expect(routesLabel).toBeInTheDocument();
+it('não transiciona para a seleção de rotas sem os arquivos', () => {
+  let confirmFiles = screen.getByText(/Confirmar arquivos/i, { selector: 'button' });
+  expect(confirmFiles).toBeInTheDocument();
+  expect(confirmFiles).toBeDisabled();
+  fireEvent.click(confirmFiles);
+  confirmFiles = screen.getByText(/Confirmar arquivos/i, { selector: 'button' });
+  expect(confirmFiles).toBeDisabled();
+  expect(confirmFiles).toBeInTheDocument();
 });
