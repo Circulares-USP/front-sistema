@@ -76,15 +76,15 @@ class Home extends React.Component{
 		{this.state.currentStep === "sendFiles" &&
 		  <FileUpload getJsons={this.getJsons} ref={this.fileUploadRef}/>}
 		{this.state.currentStep === "routeSelect8012Butantã" &&
-		  <RouteSelect line={8012} rota={"Sentido Butantã -> P3"} sentido="ida" handleSubmit={this.handleSubmit}/>}
+		  <RouteSelect line={8012} stops={this.state.routes.rotas[8012].ida} rota={"Sentido Butantã -> P3"} sentido="ida" handleSubmit={this.handleSubmit}/>}
 		{this.state.currentStep === "routeSelect8012P3" &&
-		  <RouteSelect line={8012} rota={"Sentido P3 -> Butantã"} sentido="volta" handleSubmit={this.handleSubmit}/>}
+		  <RouteSelect line={8012} stops={this.state.routes.rotas[8012].volta} rota={"Sentido P3 -> Butantã"} sentido="volta" handleSubmit={this.handleSubmit}/>}
 		{this.state.currentStep === "routeSelect8022Butantã" &&
-		  <RouteSelect line={8022} rota={"Sentido Butantã -> P3"} sentido="ida" handleSubmit={this.handleSubmit}/>}
+		  <RouteSelect line={8022} stops={this.state.routes.rotas[8022].ida} rota={"Sentido Butantã -> P3"} sentido="ida" handleSubmit={this.handleSubmit}/>}
 		{this.state.currentStep === "routeSelect8022P3" &&
-		  <RouteSelect line={8022} rota={"Sentido P3 -> Butantã"} sentido="volta" handleSubmit={this.handleSubmit}/>}
+		  <RouteSelect line={8022} stops={this.state.routes.rotas[8022].volta} rota={"Sentido P3 -> Butantã"} sentido="volta" handleSubmit={this.handleSubmit}/>}
 		{this.state.currentStep === "routeSelect8032" &&
-		  <RouteSelect line={8032} rota={"Circular"} sentido="ida" handleSubmit={this.handleSubmit}/>}
+		  <RouteSelect line={8032} stops={this.state.routes.rotas[8032].ida} rota={"Circular"} sentido="ida" handleSubmit={this.handleSubmit}/>}
 		{this.state.currentStep === "ready" &&
 		  <button className="btn btn-primary btn-md m-2" onClick = {this.showSimulateResults}>Simular resultados</button>}
 		{this.state.currentStep === "done" && (

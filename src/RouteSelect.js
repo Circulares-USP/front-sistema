@@ -5,7 +5,7 @@ import BusStops from "./BusStops.js";
 class RouteSelect extends React.Component{
   constructor(props) {
     super(props);
-    this.state = {stops: []};
+    this.state = {stops: this.props.stops};
   }
 
   handleStopChange = (check, stop) => {
@@ -29,6 +29,7 @@ class RouteSelect extends React.Component{
 		  {BusStops.map((stop) => (
 		    <div key={`inline-${stop}`} className="mb-3">
 		      <Form.Check type={"checkbox"}
+          checked={this.state.stops.includes(stop)}
 		      label={stop}
 		      onChange = {(e) => {this.handleStopChange(e.target.checked, stop)}}/>
 		    </div>
