@@ -3,9 +3,9 @@ import RouteSelect from './RouteSelect';
 import BusStops from './BusStops';
 
 beforeEach(() => {
-  const select8012 = render(<RouteSelect line={8012} />);
-  const select8022 = render(<RouteSelect line={8022} />);
-  const select8032 = render(<RouteSelect line={8032} />);
+  const select8012 = render(<RouteSelect stops={[]} line={8012} />);
+  const select8022 = render(<RouteSelect stops={[]} line={8022} />);
+  const select8032 = render(<RouteSelect stops={[]} line={8032} />);
 });
 
 it('renderiza corretamente o título de seleção de pontos', () => {
